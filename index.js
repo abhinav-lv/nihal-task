@@ -17,6 +17,11 @@ app.use(express.json());
 app.use(express.static(client_url));
 app.use(express.urlencoded({ extended: true }));
 
+if (!fs.existsSync(VIDEO_DIR)) {
+  fs.mkdirSync(VIDEO_DIR, { recursive: true });
+  console.log(`Created directory: ${VIDEO_DIR}`);
+}
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, VIDEO_DIR); // Save files in the video directory
