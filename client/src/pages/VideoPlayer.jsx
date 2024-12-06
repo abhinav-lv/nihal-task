@@ -6,10 +6,15 @@ function VideoPlayer() {
 
   return (
     <div>
-      <h1>Video Player</h1>
-      <video controls>
-        <source src={`/api/video/${id}`} type="video/mp4" />
-      </video>
+      <div className="p-4 bg-gray-800 text-white flex gap-4 items-center justify-between">
+        <h1 className="text-2xl">Video Player</h1>
+        <a href="/">Dashboard</a>
+      </div>
+      <div className="p-4">
+        <video controls>
+          <source src={`/api/video/${id}`} type="video/mp4" />
+        </video>
+      </div>
     </div>
   );
 }

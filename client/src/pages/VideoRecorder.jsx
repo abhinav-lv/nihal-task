@@ -87,8 +87,13 @@ function VideoRecorder() {
 
   return (
     <div>
-      <h1>Record Video</h1>
-      <div>
+      <div className="p-4 bg-gray-800 text-white flex gap-4 items-center justify-between">
+        <h1 className="text-2xl">Record Video</h1>
+        <a href="/" className="underline">
+          Dashboard
+        </a>
+      </div>
+      <div className="p-4">
         <video
           ref={videoRef}
           autoPlay
@@ -96,22 +101,42 @@ function VideoRecorder() {
           style={{ width: "100%", maxHeight: "400px" }}
         ></video>
       </div>
-      <div>
+      <div className="p-4">
         {!isRecording ? (
-          <button onClick={startRecording}>Start Recording</button>
+          <button
+            className="rounded-sm p-2 bg-red-600 text-white"
+            onClick={startRecording}
+          >
+            Start Recording
+          </button>
         ) : (
-          <>
+          <div className="flex gap-2">
             {!isPaused ? (
-              <button onClick={pauseRecording}>Pause Recording</button>
+              <button
+                className="rounded-sm p-2 bg-yellow-600 text-white"
+                onClick={pauseRecording}
+              >
+                Pause Recording
+              </button>
             ) : (
-              <button onClick={resumeRecording}>Resume Recording</button>
+              <button
+                className="rounded-sm p-2 bg-red-600 text-white"
+                onClick={resumeRecording}
+              >
+                Resume Recording
+              </button>
             )}
-            <button onClick={stopRecording}>Stop Recording</button>
-          </>
+            <button
+              className="rounded-sm p-2 bg-blue-600 text-white"
+              onClick={stopRecording}
+            >
+              Stop Recording
+            </button>
+          </div>
         )}
       </div>
       {previewAvailable && (
-        <div>
+        <div className="p-4 flex flex-col gap-2">
           <h3>Preview Your Recording</h3>
           <video
             ref={previewRef}
@@ -119,7 +144,12 @@ function VideoRecorder() {
             src={URL.createObjectURL(videoBlob)}
             style={{ width: "100%", maxHeight: "400px" }}
           ></video>
-          <button onClick={saveVideo}>Save Video</button>
+          <button
+            className="rounded-sm p-2 bg-blue-600 text-white w-fit"
+            onClick={saveVideo}
+          >
+            Save Video
+          </button>
         </div>
       )}
     </div>
