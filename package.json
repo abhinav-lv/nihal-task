@@ -4,6 +4,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
+    "build": "cd client && yarn install && yarn build && cd .. && yarn install && yarn start",
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
