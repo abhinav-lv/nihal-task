@@ -3,8 +3,7 @@
   "builds": [
     {
       "src": "server.js",
-      "use": "@vercel/node",
-      "config": { "includeFiles": ["client/dist/**"] }
+      "use": "@vercel/node"
     }
   ],
   "routes": [
@@ -12,5 +11,6 @@
       "src": "/(.*)",
       "dest": "server.js"
     }
-  ]
+  ],
+  "buildCommand": "yarn install && yarn install --prefix client && yarn run build --prefix client"
 }
