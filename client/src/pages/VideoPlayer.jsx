@@ -8,7 +8,9 @@ function VideoPlayer() {
     <div>
       <div className="p-4 bg-gray-800 text-white flex gap-4 items-center justify-between">
         <h1 className="text-2xl">Video Player</h1>
-        <a href="/">Dashboard</a>
+        <a href="/" className="underline">
+          Dashboard
+        </a>
       </div>
       <div className="p-4">
         <video controls>

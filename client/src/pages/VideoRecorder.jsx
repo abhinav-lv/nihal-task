@@ -74,15 +74,29 @@ function VideoRecorder() {
   };
 
   const saveVideo = async () => {
-    const formData = new FormData();
-    formData.append("video", videoBlob);
+    if (!videoBlob) {
+      alert("No video to save!");
+      return;
+    }
 
-    await axios.post("/api/record", formData, {
-      headers: { "Content-Type": "multipart/form-data" },
-    });
-    alert("Video saved!");
-    setPreviewAvailable(false);
-    setVideoBlob(null); // Clear preview after saving
+    const formData = new FormData();
+    const timestamp = new Date().toISOString().replace(/[-:.]/g, ""); // Create a timestamp (e.g., 20231206120000)
+    const filename = `video_${timestamp}.mp4`; // Example: video_20231206120000.mp4
+    formData.append("video", videoBlob, filename); // Attach the video blob with the timestamped name
+
+    console.log({ formData });
+
+    try {
+      await axios.post("/api/record", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      alert("Video saved successfully!");
+      setPreviewAvailable(false);
+      setVideoBlob(null); // Clear the preview after saving
+    } catch (error) {
+      console.error("Error saving video:", error);
+      alert("Failed to save the video.");
+    }
   };
 
   return (
